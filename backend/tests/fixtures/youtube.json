@@ -1,0 +1,182 @@
+[
+  {
+    "ip": "216.58.215.110",
+    "type": "ipv4",
+    "continent_code": "EU",
+    "continent_name": "Europe",
+    "country_code": "PL",
+    "country_name": "Poland",
+    "region_code": "MZ",
+    "region_name": "Mazovia",
+    "city": "\u015ar\u00f3dmie\u015bcie",
+    "zip": "00-025",
+    "latitude": 52.2317008972168,
+    "longitude": 21.018339157104492,
+    "location": {
+      "geoname_id": 758470,
+      "capital": "Warsaw",
+      "languages": [
+        {
+          "code": "pl",
+          "name": "Polish",
+          "native": "Polski"
+        }
+      ],
+      "country_flag": "http://assets.ipstack.com/flags/pl.svg",
+      "country_flag_emoji": "\ud83c\uddf5\ud83c\uddf1",
+      "country_flag_emoji_unicode": "U+1F1F5 U+1F1F1",
+      "calling_code": "48",
+      "is_eu": true
+    }
+  },
+  {
+    "ip": "2a00:1450:401b:803::200e",
+    "type": "ipv6",
+    "continent_code": "NA",
+    "continent_name": "North America",
+    "country_code": "US",
+    "country_name": "United States",
+    "region_code": "CA",
+    "region_name": "California",
+    "city": "San Francisco",
+    "zip": "94105",
+    "latitude": 37.775001525878906,
+    "longitude": -122.41832733154297,
+    "location": {
+      "geoname_id": 5391959,
+      "capital": "Washington D.C.",
+      "languages": [
+        {
+          "code": "en",
+          "name": "English",
+          "native": "English"
+        }
+      ],
+      "country_flag": "http://assets.ipstack.com/flags/us.svg",
+      "country_flag_emoji": "\ud83c\uddfa\ud83c\uddf8",
+      "country_flag_emoji_unicode": "U+1F1FA U+1F1F8",
+      "calling_code": "1",
+      "is_eu": false
+    }
+  },
+  {
+    "ip": "216.58.215.78",
+    "type": "ipv4",
+    "continent_code": "EU",
+    "continent_name": "Europe",
+    "country_code": "PL",
+    "country_name": "Poland",
+    "region_code": "MZ",
+    "region_name": "Mazovia",
+    "city": "\u015ar\u00f3dmie\u015bcie",
+    "zip": "00-025",
+    "latitude": 52.2317008972168,
+    "longitude": 21.018339157104492,
+    "location": {
+      "geoname_id": 758470,
+      "capital": "Warsaw",
+      "languages": [
+        {
+          "code": "pl",
+          "name": "Polish",
+          "native": "Polski"
+        }
+      ],
+      "country_flag": "http://assets.ipstack.com/flags/pl.svg",
+      "country_flag_emoji": "\ud83c\uddf5\ud83c\uddf1",
+      "country_flag_emoji_unicode": "U+1F1F5 U+1F1F1",
+      "calling_code": "48",
+      "is_eu": true
+    }
+  },
+  {
+    "ip": "172.217.16.46",
+    "type": "ipv4",
+    "continent_code": "NA",
+    "continent_name": "North America",
+    "country_code": "US",
+    "country_name": "United States",
+    "region_code": "CA",
+    "region_name": "California",
+    "city": "Mountain View",
+    "zip": "94043",
+    "latitude": 37.419158935546875,
+    "longitude": -122.07540893554688,
+    "location": {
+      "geoname_id": 5375480,
+      "capital": "Washington D.C.",
+      "languages": [
+        {
+          "code": "en",
+          "name": "English",
+          "native": "English"
+        }
+      ],
+      "country_flag": "http://assets.ipstack.com/flags/us.svg",
+      "country_flag_emoji": "\ud83c\uddfa\ud83c\uddf8",
+      "country_flag_emoji_unicode": "U+1F1FA U+1F1F8",
+      "calling_code": "1",
+      "is_eu": false
+    }
+  },
+  {
+    "ip": "172.217.16.14",
+    "type": "ipv4",
+    "continent_code": "NA",
+    "continent_name": "North America",
+    "country_code": "US",
+    "country_name": "United States",
+    "region_code": "CA",
+    "region_name": "California",
+    "city": "Mountain View",
+    "zip": "94043",
+    "latitude": 37.419158935546875,
+    "longitude": -122.07540893554688,
+    "location": {
+      "geoname_id": 5375480,
+      "capital": "Washington D.C.",
+      "languages": [
+        {
+          "code": "en",
+          "name": "English",
+          "native": "English"
+        }
+      ],
+      "country_flag": "http://assets.ipstack.com/flags/us.svg",
+      "country_flag_emoji": "\ud83c\uddfa\ud83c\uddf8",
+      "country_flag_emoji_unicode": "U+1F1FA U+1F1F8",
+      "calling_code": "1",
+      "is_eu": false
+    }
+  },
+  {
+    "ip": "172.217.20.206",
+    "type": "ipv4",
+    "continent_code": "EU",
+    "continent_name": "Europe",
+    "country_code": "PL",
+    "country_name": "Poland",
+    "region_code": "MZ",
+    "region_name": "Mazovia",
+    "city": "\u015ar\u00f3dmie\u015bcie",
+    "zip": "00-025",
+    "latitude": 52.2317008972168,
+    "longitude": 21.018339157104492,
+    "location": {
+      "geoname_id": 758470,
+      "capital": "Warsaw",
+      "languages": [
+        {
+          "code": "pl",
+          "name": "Polish",
+          "native": "Polski"
+        }
+      ],
+      "country_flag": "http://assets.ipstack.com/flags/pl.svg",
+      "country_flag_emoji": "\ud83c\uddf5\ud83c\uddf1",
+      "country_flag_emoji_unicode": "U+1F1F5 U+1F1F1",
+      "calling_code": "48",
+      "is_eu": true
+    }
+  }
+]
