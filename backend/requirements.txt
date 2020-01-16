@@ -7,4 +7,3 @@ mongomock
 pytest
 pytest-mock
 requests
-uri

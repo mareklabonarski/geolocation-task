@@ -1,6 +1,7 @@
 import json
 import os
-from unittest.mock import create_autospec
+from functools import partial
+from unittest.mock import create_autospec, Mock, MagicMock
 
 import pytest
 import requests
@@ -10,7 +11,7 @@ from requests import Response, RequestException
 from backend import models
 from backend.api.endpoints.geoip import IPSTACK_URL
 from backend.app import create_app
-
+from backend.models import add_sofomo_user
 
 FIXTURES_PATH = os.path.join(os.path.dirname(__file__), 'fixtures')
 
@@ -50,25 +51,24 @@ def mock_get_ips_for_host(mocker):
 
 @pytest.fixture
 def mock_ipstack(mocker):
-    def get_response(url, *args, **kwargs):
+    def get_response(obj, url, *args, **kwargs):
         if IPSTACK_URL in url:
             response = create_autospec(Response)
             response.json = lambda: ipstack_mock_response_content(url)[0]
             return response
 
-        return requests.get(url, *args, **kwargs)
-
-    yield mocker.patch.object(requests, 'get', new=get_response)
+        return obj.get(url, *args, **kwargs)
+    yield mocker.patch('requests.Session.get', new=get_response)
 
 
 @pytest.fixture
 def mock_ipstack_unavailable(mocker):
-    def get_response(url, *args, **kwargs):
+    def get_response(obj, url, *args, **kwargs):
         if IPSTACK_URL in url:
             raise RequestException
-        return requests.get(url, *args, **kwargs)
+        return obj.get(url, *args, **kwargs)
 
-    yield mocker.patch.object(requests, 'get', new=get_response)
+    yield mocker.patch('requests.Session.get', new=get_response)
 
 
 @pytest.fixture
@@ -102,3 +102,22 @@ def client(test_app):
 def client_no_db_mock(test_app_no_db_mock):
     with test_app_no_db_mock.test_client() as client:
         yield client
+
+
+def _authorize_client(_client):
+
+    response = _client.post('/auth', json={'username': 'sofomo', 'password': 'sofomo'})
+    token = response.json['access_token']
+
+    _client.get = partial(_client.get, headers={'Authorization': f'JWT {token}'})
+    _client.post = partial(_client.post, headers={'Authorization': f'JWT {token}'})
+    _client.delete = partial(_client.delete, headers={'Authorization': f'JWT {token}'})
+
+    return _client
+
+
+@pytest.fixture
+def authorized_client(client, clean_db):
+    add_sofomo_user()
+
+    yield _authorize_client(client)

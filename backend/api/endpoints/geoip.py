@@ -4,9 +4,9 @@ import socket
 
 import requests
 from flask import request
+from flask_jwt import jwt_required
 from flask_restplus import Resource, abort
 from mongoengine import DoesNotExist
-from pymongo.errors import PyMongoError
 from requests import RequestException
 
 from backend.api import api
@@ -36,18 +36,13 @@ def get_ips_for_host(url):
     return ips
 
 
-def service_temporarily_unavailable():
-    return {'message': 'Service temporarily unavailable'}, 503
-
-
-@api.errorhandler(PyMongoError)
-@api.errorhandler(HostResolutionError)
-def handle_service_error(error):
-    return service_temporarily_unavailable()
+class AuthResource(Resource):
+    method_decorators = [jwt_required()]
+    pass
 
 
 @geo_ns.route('/ip/<string:ip>')
-class GeoIPResource(Resource):
+class GeoIPResource(AuthResource):
 
     def get(self, ip):
         return GeoIP.objects.get_or_404(pk=ip).to_mongo()
@@ -58,7 +53,7 @@ class GeoIPResource(Resource):
 
 
 @geo_ns.route('/url/<string:url>')
-class GeoIPURLResource(Resource):
+class GeoIPURLResource(AuthResource):
 
     def get(self, url):
         ips = get_ips_for_host(url)
@@ -94,7 +89,7 @@ class GeoIPURLResource(Resource):
 
 
 @geo_ns.route('/')
-class GeoIPListResource(Resource):
+class GeoIPListResource(AuthResource):
 
     def get(self):
         # pagination would be good, but not in scope of the task
@@ -117,18 +112,23 @@ class GeoIPListResource(Resource):
         ips = [ip] if ip else ips  # if both url and ip was provided, limit to provided ip only
 
         created = []
-        for ip in ips:
-            url = f'{IPSTACK_URL}{ip}'
-            try:
-                response = requests.get(url, {'access_key': GEO_IP_KEY})
-            except RequestException:
-                return service_temporarily_unavailable()
-            else:
-                data = response.json()
-
+        with requests.Session() as session:
+            for ip in ips:
+                url = f'{IPSTACK_URL}{ip}'
                 try:
-                    GeoIP.objects.get(ip=data['ip'])
-                except DoesNotExist:
-                    created.append(GeoIP.objects.create(**data).to_mongo())
+                    response = session.get(url, params={'access_key': GEO_IP_KEY})
+                    response.raise_for_status()
+                except RequestException:
+                    from backend.error_handlers import service_temporarily_unavailable
+
+                    return service_temporarily_unavailable()
+                else:
+                    data = response.json()
+                    print(data)
+
+                    try:
+                        GeoIP.objects.get(ip=data['ip'])
+                    except DoesNotExist:
+                        created.append(GeoIP.objects.create(**data).to_mongo())
 
         return created, 201 if created else 302
