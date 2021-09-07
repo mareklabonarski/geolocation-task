@@ -1,5 +1,5 @@
 # Solution
-I could not deploy to heroku - had a problem with dockhero plugin, which did not work for me and indicated reinstallation need everytime
+I could not deploy to heroku - had a problem with dockhero plugin, which did not work for me and indicated need for reinstallation everytime
 
 # Task Definition
 Summary
